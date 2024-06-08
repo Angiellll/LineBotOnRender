@@ -21,9 +21,9 @@ from linebot.models import MessageEvent, TextMessage, FlexSendMessage, TextSendM
 # 建立 Flask 應用程式
 app = Flask(__name__)
 
-# 設定 Line Bot API 和 Webhook Handler
-line_bot_api = LineBotApi('v8Enq4ZezmDT5zEDeZvTc7L8z2ydo3ihjyZjL/oDCVcn29ZNThlmxFAjmHRNZ3CMHcaZSe8hh0K+itGHZWjWYFjIj0EEjRizFHQFVA+bYINb4MBNxuc5AWcFfmjB6Or+LeRyDzxq6JucIwjgC238+AdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('756e1f0671b2abad37750f48b590eae0')
+import os
+line_bot_api = LineBotApi(os.environ.get('Channel_Access_Token')) 
+handler = WebhookHandler(os.environ.get('Channel_Secret'))
 
 # 定義 /callback 路由，處理 Line Webhook 請求
 @app.route("/callback", methods=['POST'])
